@@ -18,6 +18,11 @@ func main() {
 
 	server.Use(cors.Default())
 
+	server.Static("/static", "main.html")
+	server.GET("/", func(c *gin.Context) {
+        c.File("main.html")
+    })
+
 	server.POST("/", func(c *gin.Context) {
 		var loc Location
 		if err := c.ShouldBindJSON(&loc); err != nil {
