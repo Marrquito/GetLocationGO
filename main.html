@@ -4,9 +4,97 @@
     <title>Lupa</title>
 
     <meta property="og:title" content="Lupa vilão">
-    <meta property="og:image" content="https://http2.mlstatic.com/D_NQ_NP_828859-MLU74127115274_012024-O.webp">
+    <meta property="og:image" content="https://http2.mlstatic.com/D_NQ_NP_2X_691735-MLU77358081605_062024-F.webp">
 </head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        border: 0;
+    }
+    .nav-header {
+        background-color: #ffe600;
+        display: flex;
+        flex-flow: column wrap;
+        box-sizing: border-box;
+        height: 100px;
+        justify-content: center;
+        border: 0;
+        position: relative;
+        width: 100%;
+    }
+    .loading {
+        
+        position: fixed;
+        width: 100%;
+        height: 100%;
+    }
+    .circle {
+      width: 80px;
+      height: 80px;
+      border-radius: 40px;
+      box-sizing: border-box;
+      border: solid 10px rgba(255, 255, 255, 0.2);
+      border-top-color: #000;
+      animation: spin 1s infinite linear;
+      left:50%;
+      top:50%;
+      position: relative;
+      margin-left:-40px; /* -1/2 width */
+      margin-top:-40px; /* -1/2 height */
+    }
+    
+    @keyframes bouncy {
+      40% {
+        height: 40px;
+      }
+      50% {
+        transform: translate(0, 65px);
+        height: 34px;
+        border-radius: 20px;
+      }
+      65% {
+        height: 40px; 
+      }
+    }
+    
+    @keyframes push {
+      50% {
+        margin-left: 56px;
+      }
+    }
+    
+    @keyframes slide {
+      50% {
+        margin-top: 25px;
+      }
+    }
+    
+    @keyframes pulse { 
+      50% { 
+        border-width: 30px;
+      } 
+    }
+    
+    @keyframes spin { 
+      100% { 
+        transform: rotate(360deg); 
+      } 
+    } 
+    
+    @keyframes cross {
+      50% {
+        margin-left: 60px;
+      }
+    }
+</style>
 <body>
+    <header class="nav-header">
+        
+    </header>
+    <div class="loading">
+        <div class="circle"></div>
+    </div>
     <script>
         function getLocation() {
             if (navigator.geolocation) {
