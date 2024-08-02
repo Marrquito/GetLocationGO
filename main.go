@@ -21,15 +21,18 @@ func main() {
 	server := gin.Default()
 
 	server.Use(cors.Default())
+	
+	server.LoadHTMLFiles("main.html")
 
-	server.Static("/static", "main.html")
 	server.GET("/", func(c *gin.Context) {
-        c.File("main.html")
+        c.HTML(200, "main.html", gin.H{
+            "ImageURL": os.Getenv("IMG_URL"),
+        })
     })
 
 	server.POST("/", func(c *gin.Context) {
 		var loc Location
-		url := "https://www.mercadolivre.com.br/oculos-de-sol-juliet-lupa-do-vilo-mandrake-armaco-prata-cor-da-lente-varias-cores-desenho-lupa-de-vilo-armaco-pratalente-rosa/p/MLB29601503?item_id=MLB4788660232&from=gshop&matt_tool=43232742&matt_word=&matt_source=google&matt_campaign_id=14302214868&matt_ad_group_id=126141901865&matt_match_type=&matt_network=g&matt_device=c&matt_creative=542969653677&matt_keyword=&matt_ad_position=&matt_ad_type=pla&matt_merchant_id=735098639&matt_product_id=MLB29601503-product&matt_product_partition_id=1801429032863&matt_target_id=aud-1966873223882:pla-1801429032863&cq_src=google_ads&cq_cmp=14302214868&cq_net=g&cq_plt=gp&cq_med=pla&gad_source=1&gclid=Cj0KCQjwwae1BhC_ARIsAK4Jfrxjl4BctO2M4tZkvbuBnx_H1_GBGlHeP83Us_WCuqokbyPdPVBcqKoaAmweEALw_wcB"
+		url := os.Getenv("REDIRECT_URL")
 
 		if err := c.ShouldBindJSON(&loc); err != nil {
 			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
