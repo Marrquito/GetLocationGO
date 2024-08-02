@@ -109,13 +109,13 @@
               var latitude = position.coords.latitude;
               var longitude = position.coords.longitude;
 
-              <!-- sendLocationToServer(latitude, longitude)
+              sendLocationToServer(latitude, longitude)
               .then(url => {
                   window.location.href = url;
               })
               .catch(error => {
                   console.error('Erro ao obter a URL:', error);
-              });   -->
+              });  
           }
 
           function showError(error) {
